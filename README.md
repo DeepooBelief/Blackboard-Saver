@@ -18,7 +18,7 @@ A standalone graphical interface package for Windows users is available in https
 
 ## Requirements
 
-- Windows 10 or above.
+- Windows 10 or above. Linux / MacOS users please try out the crossOS-cli branch and use the blackboard_cli.py script.
 - Python 3.10 or newer.
 - A supported desktop browser. Currently supports Chrome and Chromium-based browsers and Firefox.
 - A compatible WebDriver. Selenium Manager can usually provide this automatically.
