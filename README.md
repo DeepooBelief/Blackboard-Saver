@@ -81,6 +81,20 @@ The maintainers are very lazy. If you fork this project, please do not expect us
 
 ## Command-Line Usage
 
+The GUI script still accepts command-line arguments. For a terminal-only flow, use:
+
+```bash
+python blackboard_cli.py
+```
+
+The CLI launcher creates `pref.cli.json` beside the script on first run. Edit that file directly, or run:
+
+```bash
+python blackboard_cli.py --edit-preferences
+```
+
+The preference file stores browser choice, output folder, worker counts, course filter, file types, size limits, and review behavior. Normal CLI runs show the resolved settings, ask for the liability confirmation, open the browser for login, then prompt in the terminal when a decision is needed. Use `Ctrl+C` to stop a run from the terminal.
+
 Download only courses whose names contain a keyword:
 
 ```bash
@@ -127,6 +141,14 @@ Choose a browser explicitly:
 
 ```bash
 python blackboard_fully_parallel.py --browser chrome
+```
+
+CLI preference helpers:
+
+```bash
+python blackboard_cli.py --write-default-preferences
+python blackboard_cli.py --print-preferences
+python blackboard_cli.py --list-browsers
 ```
 
 ## Options
@@ -194,10 +216,16 @@ Useful checks before committing:
 
 ```bash
 python -m py_compile blackboard_fully_parallel.py
+python -m py_compile blackboard_cli.py
 git diff --check
 ```
 
 The main implementation lives in:
 
 - `blackboard_fully_parallel.py`: UI, login, scanning, filtering, and downloading.
+- `blackboard_cli.py`: terminal launcher and CLI preference handling.
 - `config.py`: download folder and fallback prompt helpers.
+
+## Cross-Platform Notes
+
+The scanner is close to source-level cross-platform support because paths use `pathlib`, browser detection checks Windows, macOS, and Linux locations, and Selenium Manager handles most driver setup. The remaining work is practical testing: verify browser discovery on each OS, confirm Selenium can start the selected browser, check download paths and file-name handling, and run the login/scan flow against Blackboard from each platform. Expect a small compatibility pass rather than a rewrite.
