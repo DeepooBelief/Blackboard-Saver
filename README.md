@@ -4,7 +4,7 @@ Blackboard Saver helps you download course materials from Imperial College Black
 It opens Blackboard in a browser, lets you choose what kinds of files you want, and saves everything into tidy course folders on your computer.
 
 ## Windows exe release
-A graphical interface for Windows users is available in https://github.com/DeepooBelief/Blackboard-Saver/releases. For Linux/Unix and MacOS users, use the following instructions to get Blackboard-Saver running on your terminal.
+A graphical interface for Windows users is available in https://github.com/DeepooBelief/Blackboard-Saver/releases. For Linux/Unix and MacOS users, we welcome forks to make the project compatible.
 
 ## Features
 
@@ -18,8 +18,9 @@ A graphical interface for Windows users is available in https://github.com/Deepo
 
 ## Requirements
 
+- Windows 10 or above.
 - Python 3.10 or newer.
-- A supported desktop browser.
+- A supported desktop browser. Currently supports Chrome and Chromium-based browsers and Firefox.
 - A compatible WebDriver. Selenium Manager can usually provide this automatically.
 - Access to Imperial College Blackboard.
 
