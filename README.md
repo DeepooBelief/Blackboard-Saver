@@ -22,7 +22,7 @@ A graphical interface for Windows users is available in https://github.com/Deepo
 - Python 3.10 or newer.
 - A supported desktop browser. Currently supports Chrome and Chromium-based browsers and Firefox.
 - A compatible WebDriver. Selenium Manager can usually provide this automatically.
-- Access to Imperial College Blackboard.
+- Access to Imperial College Blackboard. You need to provide log-in credentials to your college microsoft account in a browser window.
 
 Install Python dependencies:
 
