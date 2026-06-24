@@ -1,4 +1,11 @@
 .venv/
+.build-venv/
 __pycache__/
 key.py
 cookies.txt
+run.*.log
+build/
+dist/
+*.spec.bak
+*.sha256
+*.smoke.log
