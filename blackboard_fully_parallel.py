@@ -229,15 +229,7 @@ def make_driver(headless=False):
     return driver
 
 
-def login(driver):
-    if COOKIE_PATH.exists():
-        driver.get(HOST_WITHOUT_REDIRECT)
-        isloaded(driver)
-        load_cookie(driver, COOKIE_PATH)
-        driver.get(HOST)
-        isloaded(driver)
-        return
-
+def interactive_login(driver):
     email = get_email()
     password = get_password()
     driver.get(HOST)
@@ -253,6 +245,41 @@ def login(driver):
     driver.get(HOST)
     isloaded(driver)
     save_cookie(driver, COOKIE_PATH)
+
+
+def try_cookie_login(driver):
+    if not COOKIE_PATH.exists():
+        return False
+
+    try:
+        driver.get(HOST_WITHOUT_REDIRECT)
+        isloaded(driver)
+        load_cookie(driver, COOKIE_PATH)
+        driver.get(HOST)
+        isloaded(driver)
+    except Exception as exc:
+        log(f"Could not use saved cookies: {exc}")
+        return False
+
+    if get_course_links(driver):
+        save_cookie(driver, COOKIE_PATH)
+        log("Saved cookies are valid; refreshed cookies.txt.")
+        return True
+
+    log("Saved cookies did not open Blackboard courses; logging in again.")
+    return False
+
+
+def login(driver):
+    if try_cookie_login(driver):
+        return
+
+    try:
+        driver.delete_all_cookies()
+    except Exception:
+        pass
+
+    interactive_login(driver)
 
 
 def get_course_links(driver):
