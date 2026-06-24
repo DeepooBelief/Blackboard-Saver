@@ -3,6 +3,7 @@
 __pycache__/
 key.py
 cookies.txt
+pref.cli.json
 run.*.log
 build/
 dist/
